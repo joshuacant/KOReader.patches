@@ -38,3 +38,9 @@ Adds a header, like the "Status Bar" footer, but at the top center of the screen
 Adds header, like the "Status Bar" footer, but at the top left/right corners of the screen.
 
 <img src="resources/cornered.jpg" width="600px">
+
+
+### [🞂 2-reader-header-cornered.lua AND 2-reader-header-cornered.lua]
+You can combine both at the same time, as long as you're careful in picking what to display and your max width settings.
+
+<img src="resources/both.jpg" width="600px">

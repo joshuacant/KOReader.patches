@@ -52,6 +52,7 @@ local header_font_bold = header_settings.text_font_bold or false -- Will use you
 local header_top_padding = Size.padding.small -- replace small with default or large for more space at the top
 local header_use_book_margins = true -- Use same margins as book for header
 local header_margin = Size.padding.large -- Use this instead, if book margins is set to false
+local header_max_width_pct = 100 -- this % is how much space the header can use before "truncating..."
 local separator = {
     bar     = "|",
     bullet  = "•",
@@ -123,7 +124,7 @@ ReaderView.paintTo = function(self, bb, x, y)
         end
         return BD.auto(fitted_text)
     end
-    centered_header = getFittedText(centered_header, 100)
+    centered_header = getFittedText(centered_header, header_max_width_pct)
     local header_text = TextWidget:new {
         text = centered_header,
         face = Font:getFace(header_font_face, header_font_size),
