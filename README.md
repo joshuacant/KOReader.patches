@@ -13,12 +13,12 @@ Links below with brief descriptions. Longer descriptions and instructions can (s
 user patch file itself.
 
 ### [🞂 2-disable-unread-progressbars.lua](2-disable-unread-progressbars.lua)
-Project: Title only. Hides progress bars in Cover Grid when a book is new/unopened.
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only. Hides progress bars in Cover Grid when a book is new/unopened.
 
 
 
 ### [🞂 2-font-override.lua](2-font-override.lua)
-Project Title only. Uses the plugin's sans-serif font across the entire KOReader UI.
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only. Uses the plugin's sans-serif font across the entire KOReader UI.
 
 
 
