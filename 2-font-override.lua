@@ -1,7 +1,7 @@
 --[[
     This user patch is primarily for use with the Project: Title plugin.
     
-    It sets the UI fonts to the same sans serif font used in the plugin.
+    It sets the UI fonts to the sans serif font used in the plugin.
 --]]
 
 local Font = require("ui/font")

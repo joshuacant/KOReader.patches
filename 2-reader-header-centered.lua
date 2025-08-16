@@ -47,6 +47,7 @@ local screen_width = Screen:getWidth()
 
 -- Configure formatting options for header here, if desired
 local header_font_face = "ffont" -- this is the same font the footer uses
+-- header_font_face = "source/SourceSerif4-Regular.ttf" -- this is the serif font from Project: Title
 local header_font_size = header_settings.text_font_size or 14 -- Will use your footer setting if available
 local header_font_bold = header_settings.text_font_bold or false -- Will use your footer setting if available
 local header_top_padding = Size.padding.small -- replace small with default or large for more space at the top
