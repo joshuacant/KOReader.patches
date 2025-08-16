@@ -27,6 +27,11 @@ Moves English articles (a, an, the) to the front of file/folder names, and repla
 
 
 
+### [🞂 2-reader-footer-font-override.lua](2-reader-footer-font-override.lua)
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only. Sets the Status Bar font to the serif font included with the plugin.
+
+
+
 ### [🞂 2-reader-header-centered.lua](2-reader-header-centered.lua)
 Adds a header, like the "Status Bar" footer, but at the top center of the screen.
 
