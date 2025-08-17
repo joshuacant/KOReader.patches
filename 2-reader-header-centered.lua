@@ -45,26 +45,32 @@ local _ReaderView_paintTo_orig = ReaderView.paintTo
 local header_settings = G_reader_settings:readSetting("footer")
 local screen_width = Screen:getWidth()
 
--- Configure formatting options for header here, if desired
-local header_font_face = "ffont" -- this is the same font the footer uses
--- header_font_face = "source/SourceSerif4-Regular.ttf" -- this is the serif font from Project: Title
-local header_font_size = header_settings.text_font_size or 14 -- Will use your footer setting if available
-local header_font_bold = header_settings.text_font_bold or false -- Will use your footer setting if available
-local header_top_padding = Size.padding.small -- replace small with default or large for more space at the top
-local header_use_book_margins = true -- Use same margins as book for header
-local header_margin = Size.padding.large -- Use this instead, if book margins is set to false
-local header_max_width_pct = 100 -- this % is how much space the header can use before "truncating..."
-local separator = {
-    bar     = "|",
-    bullet  = "•",
-    dot     = "·",
-    em_dash = "—",
-    en_dash = "-",
-}
-
 ReaderView.paintTo = function(self, bb, x, y)
     _ReaderView_paintTo_orig(self, bb, x, y)
     if self.render_mode ~= nil then return end -- Show only for epub-likes and never on pdf-likes
+
+
+
+    -- ===========================!!!!!!!!!!!!!!!=========================== -
+    -- Configure formatting options for header here, if desired
+    local header_font_face = "ffont" -- this is the same font the footer uses
+    -- header_font_face = "source/SourceSerif4-Regular.ttf" -- this is the serif font from Project: Title
+    local header_font_size = header_settings.text_font_size or 14 -- Will use your footer setting if available
+    local header_font_bold = header_settings.text_font_bold or false -- Will use your footer setting if available
+    local header_top_padding = Size.padding.small -- replace small with default or large for more space at the top
+    local header_use_book_margins = true -- Use same margins as book for header
+    local header_margin = Size.padding.large -- Use this instead, if book margins is set to false
+    local header_max_width_pct = 100 -- this % is how much space the header can use before "truncating..."
+    local separator = {
+        bar     = "|",
+        bullet  = "•",
+        dot     = "·",
+        em_dash = "—",
+        en_dash = "-",
+    }
+    -- ===========================!!!!!!!!!!!!!!!=========================== -
+
+
 
     -- Infos for whole book:
     local pageno = self.state.page or 1 -- Current page
@@ -87,13 +93,15 @@ ReaderView.paintTo = function(self, bb, x, y)
     end
     -- Clock:
     local time = datetime.secondsToHour(os.time(), G_reader_settings:isTrue("twelve_hour_clock"))
-    -- You probably don't need to change anything above this line
+    -- You probably don't need to change anything in the section above this line
 
 
 
+    -- ===========================!!!!!!!!!!!!!!!=========================== -
     -- What you put here will show in the header:
     local centered_header = string.format("%s %s %s", book_author, separator.en_dash, book_title)
     -- Look up "string.format" in Lua if you need help.
+    -- ===========================!!!!!!!!!!!!!!!=========================== -
 
 
 
