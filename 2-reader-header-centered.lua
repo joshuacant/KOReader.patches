@@ -23,6 +23,7 @@
     https://github.com/koreader/koreader/blob/master/frontend/apps/reader/modules/readerfooter.lua
 ]]--
 
+local Blitbuffer = require("ffi/blitbuffer")
 local TextWidget = require("ui/widget/textwidget")
 local CenterContainer = require("ui/widget/container/centercontainer")
 local VerticalGroup = require("ui/widget/verticalgroup")
@@ -57,6 +58,7 @@ ReaderView.paintTo = function(self, bb, x, y)
     -- header_font_face = "source/SourceSerif4-Regular.ttf" -- this is the serif font from Project: Title
     local header_font_size = header_settings.text_font_size or 14 -- Will use your footer setting if available
     local header_font_bold = header_settings.text_font_bold or false -- Will use your footer setting if available
+    local header_font_color = Blitbuffer.COLOR_BLACK -- black is the default, but there's 15 other shades to try
     local header_top_padding = Size.padding.small -- replace small with default or large for more space at the top
     local header_use_book_margins = true -- Use same margins as book for header
     local header_margin = Size.padding.large -- Use this instead, if book margins is set to false
@@ -138,6 +140,7 @@ ReaderView.paintTo = function(self, bb, x, y)
         text = centered_header,
         face = Font:getFace(header_font_face, header_font_size),
         bold = header_font_bold,
+        fgcolor = header_font_color,
         padding = 0,
     }
     local header = CenterContainer:new {
