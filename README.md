@@ -12,6 +12,11 @@ and remember to share with me any neat stuff you add.
 Links below with brief descriptions. Longer descriptions and instructions can (sometimes) be found at the top of the
 user patch file itself.
 
+### [🞂 2-disable-fullyread-progressbars.lua](2-disable-fullyread-progressbars.lua)
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only. Hides progress bars in Cover Grid when a book is 100% or marked
+as finished. Optionally shows the trophy in the corner, like the old Cover Browser dogear style.
+
+
 ### [🞂 2-disable-unread-progressbars.lua](2-disable-unread-progressbars.lua)
 [Project: Title](https://github.com/joshuacant/ProjectTitle) only. Hides progress bars in Cover Grid when a book is new/unopened.
 
