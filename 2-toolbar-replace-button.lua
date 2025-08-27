@@ -26,10 +26,11 @@
 local userpatch = require("userpatch")
 local Dispatcher = require("dispatcher")
 local logger = require("logger")
--- You should not need to change the code above this line
+-- don't change anything above this line
 
 
 
+-- ===========================!!!!!!!!!!!!!!!=========================== -
 -- Pick the button to replace. The other 3 buttons should not be replaced, they are
 -- essential to using KOReader.
 local button_to_replace = "right3"      -- Open last book (book w/ arrow)
@@ -51,10 +52,11 @@ local new_hold_callback = function() -- multi-action example: set frontlight bri
         ["set_frontlight_warmth"] = 20,
     })
 end
+-- ===========================!!!!!!!!!!!!!!!=========================== -
 
 
 
--- You should not need to change the code below this line
+-- don't change anything below this line
 local function patchCoverBrowser(plugin)
     local TitleBar = require("titlebar")
     local orig_TitleBar_init = TitleBar.init

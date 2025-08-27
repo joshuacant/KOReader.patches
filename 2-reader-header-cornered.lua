@@ -49,7 +49,7 @@ local screen_width = Screen:getWidth()
 ReaderView.paintTo = function(self, bb, x, y)
     _ReaderView_paintTo_orig(self, bb, x, y)
     if self.render_mode ~= nil then return end -- Show only for epub-likes and never on pdf-likes
-
+    -- don't change anything above this line
 
 
     -- ===========================!!!!!!!!!!!!!!!=========================== -
@@ -74,7 +74,7 @@ ReaderView.paintTo = function(self, bb, x, y)
     -- ===========================!!!!!!!!!!!!!!!=========================== -
 
 
-
+    -- You probably don't need to change anything in the section below this line
     -- Infos for whole book:
     local pageno = self.state.page or 1 -- Current page
     local pages = self.ui.doc_settings.data.doc_pages or 1
@@ -109,7 +109,7 @@ ReaderView.paintTo = function(self, bb, x, y)
 
 
 
-    -- You really shouldn't need to change anything below this line
+    -- don't change anything below this line
     local margins = 0
     local left_margin = header_margin
     local right_margin = header_margin

@@ -38,6 +38,22 @@ local function patchCoverBrowser(plugin)
     local TitleBar = require("titlebar")
     local orig_TitleBar_init = TitleBar.init
     TitleBar.init = function(self)
+    -- don't change anything above this line
+
+
+
+        -- ===========================!!!!!!!!!!!!!!!=========================== -
+        -- the value below sets the space between icons. PT default is 35, reduce as needed
+        -- to fit more buttons.
+        self.icon_margin_lr = Screen:scaleBySize(25)
+        -- the value below sets the space between the edge of the display and the home/menu
+        -- icons. PT default is 16.
+        self.titlebar_margin_lr = Screen:scaleBySize(12)
+        -- ===========================!!!!!!!!!!!!!!!=========================== -
+
+
+
+        -- don't change anything below this line
         self.width = Screen:getWidth()
         self.titlebar_height = self.icon_size + self.icon_padding_top + self.icon_padding_bottom
         self.dimen = Geom:new {
@@ -46,11 +62,9 @@ local function patchCoverBrowser(plugin)
             w = self.width,
             h = self.titlebar_height,
         }
-        self.icon_margin_lr = Screen:scaleBySize(24) -- reduce intra-button spacing to fit more
         self.icon_total_width = self.icon_size + self.icon_margin_lr
         local padding4 = self.titlebar_margin_lr + (self.icon_total_width * 3)
         local padding5 = self.titlebar_margin_lr + (self.icon_total_width * 4)
-
         local function build_container(button, is_left_button, padding)
             local pre_padding
             local post_padding
@@ -70,48 +84,58 @@ local function patchCoverBrowser(plugin)
                 },
             }
         end
+        -- don't change anything above this line
 
+
+
+        -- ===========================!!!!!!!!!!!!!!!=========================== -
+        -- add new button on left
         self.left4_button = IconButton:new {
-            icon = "appbar.pokeball",
-            icon_rotation_angle = 0,
-            width = self.icon_size,
-            height = self.icon_size,
-            padding = 0,
-            padding_bottom = self.icon_padding_bottom,
-            padding_top = self.icon_padding_top,
-            callback = function()
+            icon = "appbar.pokeball", -- set icon name here
+            width = self.icon_size, -- do not change
+            height = self.icon_size, -- do not change
+            padding = 0, -- do not change
+            padding_bottom = self.icon_padding_bottom, -- do not change
+            padding_top = self.icon_padding_top, -- do not change
+            callback = function() -- this is for tap
                 Dispatcher:execute({ "screenshot" })
             end,
-            hold_callback = function()
+            hold_callback = function() -- this is for long-press
                 Dispatcher:execute({
                     ["set_frontlight"] = 40,
                     ["set_frontlight_warmth"] = 20,
                 })
             end,
-            allow_flash = true,
-            show_parent = self.show_parent,
+            show_parent = self.show_parent, -- do not change
         }
         self.left4_button_container = build_container(self.left4_button, true, padding4)
+        -- ===========================!!!!!!!!!!!!!!!=========================== -
 
+
+
+        -- ===========================!!!!!!!!!!!!!!!=========================== -
+        -- add new button on right
         self.right4_button = IconButton:new {
-            icon = "appbar.search",
-            icon_rotation_angle = 0,
-            width = self.icon_size,
-            height = self.icon_size,
-            padding = 0,
-            padding_bottom = self.icon_padding_bottom,
-            padding_top = self.icon_padding_top,
-            callback = function()
+            icon = "appbar.search", -- set icon name here
+            width = self.icon_size, -- do not change
+            height = self.icon_size, -- do not change
+            padding = 0, -- do not change
+            padding_bottom = self.icon_padding_bottom, -- do not change
+            padding_top = self.icon_padding_top, -- do not change
+            callback = function() -- this is for tap
                 Dispatcher:execute({ "file_search" })
             end,
-            hold_callback = function()
+            hold_callback = function() -- this is for long-press
                 Dispatcher:execute({ "calibre_search" })
             end,
-            allow_flash = true,
-            show_parent = self.show_parent,
+            show_parent = self.show_parent, -- do not change
         }
         self.right4_button_container = build_container(self.right4_button, false, padding4)
+        -- ===========================!!!!!!!!!!!!!!!=========================== -
 
+
+
+        -- don't change anything below this line
         orig_TitleBar_init(self)
     end
 end
