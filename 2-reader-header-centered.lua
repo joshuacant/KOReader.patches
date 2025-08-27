@@ -21,7 +21,7 @@
     accessing values is a little different. The examples I've provided should give plenty of hints.
 
     https://github.com/koreader/koreader/blob/master/frontend/apps/reader/modules/readerfooter.lua
-]]--
+--]]
 
 local Blitbuffer = require("ffi/blitbuffer")
 local TextWidget = require("ui/widget/textwidget")

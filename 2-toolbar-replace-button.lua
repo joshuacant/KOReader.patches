@@ -3,7 +3,7 @@
     Project: Title v3.5 or higher.
 
     It replaces a button in the top toolbar.
-    
+
     You can choose a new icon and new actions for tap and long-press. If you set
     icon, tap, or hold to nil then the original value is kept. In this way you
     could keep an button's icon and tap action and add only a long-press action
@@ -17,7 +17,7 @@
 
     You can manually program a button to do absolutely anything, but the fastest
     method is to use the functions defined by, and added to, Dispatcher.
-        
+
     You can find all predefined functions at the link below. For functions added
     by plugins, you'll have to go digging into their code to find them.
 
@@ -25,6 +25,7 @@
 --]]
 local userpatch = require("userpatch")
 local Dispatcher = require("dispatcher")
+local logger = require("logger")
 -- You should not need to change the code above this line
 
 
