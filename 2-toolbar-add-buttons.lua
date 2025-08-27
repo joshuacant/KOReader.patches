@@ -51,6 +51,27 @@ local function patchCoverBrowser(plugin)
         self.icon_total_width = self.icon_size + self.icon_margin_lr
         local padding4 = self.titlebar_margin_lr + (self.icon_total_width * 3)
         local padding5 = self.titlebar_margin_lr + (self.icon_total_width * 4)
+
+        local function build_container(button, is_left_button, padding)
+            local pre_padding
+            local post_padding
+            if is_left_button then
+                pre_padding = padding
+                post_padding = self.width - padding - button:getSize().w
+            else
+                pre_padding = self.width - padding - button:getSize().w
+                post_padding = padding
+            end
+            return LeftContainer:new {
+                dimen = self.dimen,
+                HorizontalGroup:new {
+                    HorizontalSpan:new { width = pre_padding },
+                    button,
+                    HorizontalSpan:new { width = post_padding },
+                },
+            }
+        end
+
         self.left4_button = IconButton:new {
             icon = "appbar.pokeball",
             icon_rotation_angle = 0,
@@ -60,25 +81,19 @@ local function patchCoverBrowser(plugin)
             padding_bottom = self.icon_padding_bottom,
             padding_top = self.icon_padding_top,
             callback = function()
-                Dispatcher:execute({"screenshot"})
+                Dispatcher:execute({ "screenshot" })
             end,
             hold_callback = function()
-                    Dispatcher:execute({
+                Dispatcher:execute({
                     ["set_frontlight"] = 40,
                     ["set_frontlight_warmth"] = 20,
                 })
             end,
             allow_flash = true,
             show_parent = self.show_parent,
-            }
-        self.left4_button_container = LeftContainer:new {
-            dimen = self.dimen,
-            HorizontalGroup:new {
-                HorizontalSpan:new { width = padding4 },
-                self.left4_button,
-                HorizontalSpan:new { width = self.width - padding4 - self.left4_button:getSize().w },
-            },
         }
+        self.left4_button_container = build_container(self.left4_button, true, padding4)
+
         self.right4_button = IconButton:new {
             icon = "appbar.search",
             icon_rotation_angle = 0,
@@ -88,22 +103,16 @@ local function patchCoverBrowser(plugin)
             padding_bottom = self.icon_padding_bottom,
             padding_top = self.icon_padding_top,
             callback = function()
-                Dispatcher:execute({"file_search"})
+                Dispatcher:execute({ "file_search" })
             end,
             hold_callback = function()
-                Dispatcher:execute({"calibre_search"})
+                Dispatcher:execute({ "calibre_search" })
             end,
             allow_flash = true,
             show_parent = self.show_parent,
-            }
-        self.right4_button_container = RightContainer:new {
-            dimen = self.dimen,
-            HorizontalGroup:new {
-                HorizontalSpan:new { width = self.width - padding4 - self.right4_button:getSize().w },
-                self.right4_button,
-                HorizontalSpan:new { width = padding4 },
-            },
         }
+        self.right4_button_container = build_container(self.right4_button, false, padding4)
+
         orig_TitleBar_init(self)
     end
 end

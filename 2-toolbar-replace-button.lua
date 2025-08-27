@@ -41,7 +41,7 @@ local new_icon = "appbar.search"
 
 -- Tap Callback is the action(s) for a short tap.
 local new_tap_callback = function()
-    Dispatcher:execute({"file_search"}) -- example: open file search box
+    Dispatcher:execute({ "file_search" }) -- example: open file search box
 end
 
 -- Hold Callback is the action(s) for a long-press.
