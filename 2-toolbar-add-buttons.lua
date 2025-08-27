@@ -25,7 +25,6 @@
 --]]
 local IconButton = require("ui/widget/iconbutton")
 local LeftContainer = require("ui/widget/container/leftcontainer")
-local RightContainer = require("ui/widget/container/rightcontainer")
 local HorizontalGroup = require("ui/widget/horizontalgroup")
 local HorizontalSpan = require("ui/widget/horizontalspan")
 local Dispatcher = require("dispatcher")
