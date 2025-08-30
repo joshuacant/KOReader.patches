@@ -12,6 +12,10 @@ and remember to share with me any neat stuff you add.
 Links below with brief descriptions. Longer descriptions and instructions can (sometimes) be found at the top of the
 user patch file itself.
 
+### [🞂 2-disable-all-progressbars.lua](2-disable-all-progressbars.lua)
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only. Hides all information overlays on books in Cover Grid.
+
+
 ### [🞂 2-disable-fullyread-progressbars.lua](2-disable-fullyread-progressbars.lua)
 [Project: Title](https://github.com/joshuacant/ProjectTitle) only. Hides progress bars in Cover Grid when a book is 100% or marked
 as finished. Optionally shows the trophy in the corner, like the old Cover Browser dogear style.
@@ -54,3 +58,11 @@ Adds header, like the "Status Bar" footer, but at the top left/right corners of 
 You can combine both at the same time, as long as you're careful in picking what to display and your max width settings.
 
 <img src="resources/both.jpg" width="600px">
+
+### [🞂 2-toolbar-add-buttons.lua](2-toolbar-add-buttons.lua)
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only. Requires Project: Title version 3.5 or higher. Adds 2 or 4
+buttons to the title bar.
+
+### [🞂 2-toolbar-replace-button.lua](2-toolbar-replace-button.lua)
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only.  Requires Project: Title version 3.5 or higher. Replaces
+a button in the title bar with a new icon and tap/long-press actions.
