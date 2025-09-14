@@ -97,6 +97,19 @@ ReaderView.paintTo = function(self, bb, x, y)
     end
     -- Clock:
     local time = datetime.secondsToHour(os.time(), G_reader_settings:isTrue("twelve_hour_clock"))
+    -- Battery:
+    local battery = ""
+    if Device:hasBattery() then
+        local powerd = Device:getPowerDevice()
+        local batt_lvl = 0
+        local batt_prefix = ""
+        local is_charging = false
+        local main_batt_lvl = powerd:getCapacity()
+        is_charging = powerd:isCharging()
+        batt_lvl = main_batt_lvl
+        batt_prefix = powerd:getBatterySymbol(powerd:isCharged(), is_charging, main_batt_lvl)
+        battery = batt_prefix .. batt_lvl .. "%"
+    end
     -- You probably don't need to change anything in the section above this line
 
 
