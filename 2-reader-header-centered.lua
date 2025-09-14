@@ -101,13 +101,9 @@ ReaderView.paintTo = function(self, bb, x, y)
     local battery = ""
     if Device:hasBattery() then
         local powerd = Device:getPowerDevice()
-        local batt_lvl = 0
-        local batt_prefix = ""
-        local is_charging = false
-        local main_batt_lvl = powerd:getCapacity()
-        is_charging = powerd:isCharging()
-        batt_lvl = main_batt_lvl
-        batt_prefix = powerd:getBatterySymbol(powerd:isCharged(), is_charging, main_batt_lvl)
+        local batt_lvl = powerd:getCapacity() or 0
+        local is_charging = powerd:isCharging() or false
+        local batt_prefix = powerd:getBatterySymbol(powerd:isCharged(), is_charging, batt_lvl) or ""
         battery = batt_prefix .. batt_lvl .. "%"
     end
     -- You probably don't need to change anything in the section above this line
