@@ -155,7 +155,7 @@ ReaderView.paintTo = function(self, bb, x, y)
         padding = 0,
     }
     local header = CenterContainer:new {
-        dimen = Geom:new{ w = screen_width, h = header_text:getSize().h },
+        dimen = Geom:new{ w = screen_width, h = header_text:getSize().h + header_top_padding },
         VerticalGroup:new {
             VerticalSpan:new { width = header_top_padding },
             HorizontalGroup:new {
