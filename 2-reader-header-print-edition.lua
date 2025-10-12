@@ -80,34 +80,44 @@ ReaderView.paintTo = function(self, bb, x, y)
 
 
     -- You probably don't need to change anything in the section below this line
-    -- Infos for whole book:
+    -- Title and Author(s):
+    local book_title = ""
+    local book_author = ""
+    if self.ui.doc_props then
+        book_title = self.ui.doc_props.display_title or ""
+        book_author = self.ui.doc_props.authors or ""
+        if book_author:find("\n") then -- Show first author if multiple authors
+            book_author =  T(_("%1 et al."), util.splitToArray(book_author, "\n")[1] .. ",")
+        end
+    end
+    -- Page count and percentage
     local pageno = self.state.page or 1 -- Current page
     local pages = self.ui.doc_settings.data.doc_pages or 1
-    local book_title = self.ui.doc_props.display_title or ""
     local page_progress = ("%d / %d"):format(pageno, pages)
     local pages_left_book  = pages - pageno
     local percentage = (pageno / pages) * 100 -- Format like %.1f in header_string below
-    -- Infos for current chapter:
-    local book_chapter = self.ui.toc:getTocTitleByPage(pageno) or "" -- Chapter name
-    local pages_chapter = self.ui.toc:getChapterPageCount(pageno) or pages
-    local pages_left = self.ui.toc:getChapterPagesLeft(pageno) or self.ui.document:getTotalPagesLeft(pageno)
-    local pages_done = self.ui.toc:getChapterPagesDone(pageno) or 0
+    -- Chapter Info
+    local book_chapter = ""
+    local pages_chapter = 0
+    local pages_left = 0
+    local pages_done = 0
+    if self.ui.toc then
+        book_chapter = self.ui.toc:getTocTitleByPage(pageno) or "" -- Chapter name
+        pages_chapter = self.ui.toc:getChapterPageCount(pageno) or pages
+        pages_left = self.ui.toc:getChapterPagesLeft(pageno) or self.ui.document:getTotalPagesLeft(pageno)
+        pages_done = self.ui.toc:getChapterPagesDone(pageno) or 0
+    end
     pages_done = pages_done + 1 -- This +1 is to include the page you're looking at
     local chapter_progress = pages_done .. " ⁄⁄ " .. pages_chapter
-    -- Author(s):
-    local book_author = self.ui.doc_props.authors
-    if book_author:find("\n") then -- Show first author if multiple authors
-        book_author =  T(_("%1 et al."), util.splitToArray(book_author, "\n")[1] .. ",")
-    end
     -- Clock:
-    local time = datetime.secondsToHour(os.time(), G_reader_settings:isTrue("twelve_hour_clock"))
+    local time = datetime.secondsToHour(os.time(), G_reader_settings:isTrue("twelve_hour_clock")) or ""
     -- Battery:
     local battery = ""
     if Device:hasBattery() then
-        local powerd = Device:getPowerDevice()
-        local batt_lvl = powerd:getCapacity() or 0
-        local is_charging = powerd:isCharging() or false
-        local batt_prefix = powerd:getBatterySymbol(powerd:isCharged(), is_charging, batt_lvl) or ""
+        local power_dev = Device:getPowerDevice()
+        local batt_lvl = power_dev:getCapacity() or 0
+        local is_charging = power_dev:isCharging() or false
+        local batt_prefix = power_dev:getBatterySymbol(power_dev:isCharged(), is_charging, batt_lvl) or ""
         battery = batt_prefix .. batt_lvl .. "%"
     end
     -- You probably don't need to change anything in the section above this line
