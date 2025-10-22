@@ -43,6 +43,11 @@ Moves English articles (a, an, the) to the front of file/folder names, and repla
 
 
 
+### [🞂 2-reader-footer-widgets.lua](2-reader-footer-widgets.lua)
+[Project: Title](https://github.com/joshuacant/ProjectTitle) only. Allows for customization of the widgets (time, wifi, battery, frontlight) shown in the footer of Project: Title.
+
+
+
 ### [🞂 2-reader-header-centered.lua](2-reader-header-centered.lua)
 Adds a header, like the "Status Bar" footer, but at the top center of the screen.
 
@@ -61,6 +66,13 @@ Adds header, like the "Status Bar" footer, but at the top left/right corners of 
 You can combine both at the same time, as long as you're careful in picking what to display and your max width settings.
 
 <img src="resources/both.jpg" width="600px">
+
+
+
+### [🞂 2-reader-header-print-edition.lua](2-reader-header-print-edition.lua)
+Emulates the look of a physical book, with the page numbers alternating between upper left and upper right corners,
+the text at the center of the top alternating between "author - title" and "chapter name", and the page number is
+shown centered at the bottom for the first page of a chapter.
 
 
 
