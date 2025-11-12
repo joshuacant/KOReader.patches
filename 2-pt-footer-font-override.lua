@@ -6,7 +6,6 @@
 
     good_serif and font_size are used for showing the current folder name (or 'Home'/'Library')
     good_sans and font_size_deviceinfo are used for showing the device info (wifi, frontlight, etc)
-
 --]]
 
 local userpatch = require("userpatch")
