@@ -20,11 +20,9 @@ Menu.getMenuText = function(item)
                 local trailing_slash = ''
                 if menu_text:match('/$') then
                     trailing_slash = '/'
-                    menu_text = string.sub(menu_text, 1, -1)
+                    menu_text = string.sub(menu_text, 1, -2)
                 end
-                menu_text = string.sub(ending, 2) .. " " ..
-                    string.sub(menu_text, 1, ((string.len(ending) + 2) * -1)) ..
-                    trailing_slash
+                menu_text = string.sub(ending, 3) .. " " .. string.sub(menu_text, 1, ((string.len(ending) + 1) * -1)) .. trailing_slash
             end
         end
     end
