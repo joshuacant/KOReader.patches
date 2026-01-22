@@ -7,6 +7,10 @@
         The centered text at the top alternates between "chapter title" and "author - book title"
         On the first page of a chapter, the page number is shown centered at the bottom of the page.
 
+    It has support for stable page numbers:
+        If you have enabled "Stable page numbers" in the document settings, this patch will 
+        automatically display the stable/reference page numbers instead of the screen page numbers.
+
     It is up to you to provide enough of a top margin so that your book contents are not
     obscured by the header. You'll know right away if you need to increase the top margin.
 
@@ -80,6 +84,28 @@ ReaderView.paintTo = function(self, bb, x, y)
 
 
     -- You probably don't need to change anything in the section below this line
+    
+    -- Helper function: Convert screen page to stable page using page labels cache
+    local function screenToStablePage(screen_page)
+        if not self.ui.pagemap or not self.ui.pagemap.page_labels_cache then
+            return screen_page
+        end
+        local stable = nil
+        local search_page = screen_page
+        while stable == nil and search_page > 0 do
+            for _, page_data in pairs(self.ui.pagemap.page_labels_cache) do
+                if type(page_data) == "table" and #page_data >= 2 then
+                    if page_data[2] == search_page then
+                        stable = page_data[1]
+                        break
+                    end
+                end
+            end
+            search_page = search_page - 1
+        end
+        return stable or screen_page
+    end
+    
     -- Title and Author(s):
     local book_title = ""
     local book_author = ""
@@ -93,9 +119,13 @@ ReaderView.paintTo = function(self, bb, x, y)
     -- Page count and percentage
     local pageno = self.state.page or 1 -- Current page
     local pages = self.ui.doc_settings.data.doc_pages or 1
-    local page_progress = ("%d / %d"):format(pageno, pages)
-    local pages_left_book  = pages - pageno
-    local percentage = (pageno / pages) * 100 -- Format like %.1f in header_string below
+    
+    -- Get stable/reference page number for display
+    local display_pageno = screenToStablePage(pageno)
+    
+    local page_progress = ("%d / %d"):format(display_pageno, pages)
+    local pages_left_book  = pages - display_pageno
+    local percentage = (display_pageno / pages) * 100 -- Format like %.1f in header_string below
     -- Chapter Info
     local book_chapter = ""
     local pages_chapter = 0
@@ -129,17 +159,17 @@ ReaderView.paintTo = function(self, bb, x, y)
     local left_corner_header = ""
     local right_corner_header = ""
     local centered_header = ""
-    if (pages_done > 1) and (pageno % 2 == 0) then
-        left_corner_header = string.format("%d", pageno)
-    elseif (pages_done > 1) and (pageno % 2 ~= 0) then
-        right_corner_header = string.format("%d", pageno)
+    if (pages_done > 1) and (display_pageno % 2 == 0) then
+        left_corner_header = string.format("%d", display_pageno)
+    elseif (pages_done > 1) and (display_pageno % 2 ~= 0) then
+        right_corner_header = string.format("%d", display_pageno)
     end
-    if (pages_done > 1) and (pageno % 2 == 0) then
+    if (pages_done > 1) and (display_pageno % 2 == 0) then
         centered_header = string.format("%s %s %s", book_author, separator.en_dash, book_title)
-    elseif (pages_done > 1) and (pageno % 2 ~= 0) then
+    elseif (pages_done > 1) and (display_pageno % 2 ~= 0) then
         centered_header = string.format("%s", book_chapter)
     elseif pages_done == 1 then
-        centered_header = string.format("%d", pageno)
+        centered_header = string.format("%d", display_pageno)
     end
     -- Look up "string.format" in Lua if you need help.
     -- ===========================!!!!!!!!!!!!!!!=========================== -
