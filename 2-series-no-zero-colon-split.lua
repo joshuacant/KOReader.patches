@@ -2,13 +2,15 @@
     This user patch is primarily for use with the Project: Title plugin. It requires
     Project: Title v3.5 or higher.
 
-    This patch converts series index numbers from Arabic to Roman numerals.
+    This patch alters the series by doing the following:
+        If the series index is 0, it is supressed entirely.
+        If the series string has one or more colons, split on them and show only the
+         substring that's furthest to the right.
 
-    This patch is meant to demonstrate how replacing the new formatAuthors, formatSeries,
-    and formatAuthorSeries functions with your own can change the look of Cover List
-    view without needing to modify the plugin itself.
+    Otherwise the series and index are presented as they are in the metadata.
 --]]
 local BD = require("ui/bidi")
+local util = require("util")
 local userpatch = require("userpatch")
 
 local function patchCoverBrowser(plugin)
