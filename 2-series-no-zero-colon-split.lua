@@ -16,7 +16,7 @@ local userpatch = require("userpatch")
 local function patchCoverBrowser(plugin)
     local ptutil = require("ptutil")
 
-    -- replace formatSeries so that this new function below is run instead
+    -- List views
     function ptutil.formatSeries(series, series_index)
         local formatted_series = ""
         -- suppress series if index is "0"
@@ -33,6 +33,17 @@ local function patchCoverBrowser(plugin)
             formatted_series = BD.auto(series)
         end
         return formatted_series
+    end
+
+    -- Cover views
+    function ptutil.formatSeriesIndex(series_index)
+        if series_index == 0 then return nil end
+        local formatted_series_index = ""
+        formatted_series_index = " " .. series_index .. " "
+        if string.len(formatted_series_index) == 3 then
+            formatted_series_index = " " .. formatted_series_index .. " "
+        end
+        return formatted_series_index
     end
 end
 
