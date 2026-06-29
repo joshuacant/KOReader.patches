@@ -49,6 +49,7 @@ local screen_width = Screen:getWidth()
 ReaderView.paintTo = function(self, bb, x, y)
     _ReaderView_paintTo_orig(self, bb, x, y)
     if self.render_mode ~= nil then return end -- Show only for epub-likes and never on pdf-likes
+    if bb ~= Screen.bb then return end -- Only draw on the real screen; skip off-screen renders (page browser / book map thumbnails), otherwise their thumbnails never load
     -- don't change anything above this line
 
 
