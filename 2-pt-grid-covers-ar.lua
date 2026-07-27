@@ -30,4 +30,4 @@ local function patchCoverBrowser(plugin)
     ptutil.grid_defaults.stretch_covers = true
     ptutil.grid_defaults.stretch_ratio = 0.85
 end
-userpatch.registerPatchPluginFunc("coverbrowser", patchCoverBrowser)
+userpatch.registerPatchPluginFunc("projecttitle", patchCoverBrowser)

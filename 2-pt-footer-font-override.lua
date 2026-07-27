@@ -33,4 +33,4 @@ local function patchCoverBrowser(plugin)
         ptutil.footer_defaults.font_size_deviceinfo = orig_font_size_deviceinfo
     end
 end
-userpatch.registerPatchPluginFunc("coverbrowser", patchCoverBrowser)
+userpatch.registerPatchPluginFunc("projecttitle", patchCoverBrowser)

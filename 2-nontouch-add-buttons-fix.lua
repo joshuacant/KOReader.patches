@@ -101,4 +101,4 @@ local function patchCoverBrowser(plugin)
         return layout
     end
 end
-userpatch.registerPatchPluginFunc("coverbrowser", patchCoverBrowser)
+userpatch.registerPatchPluginFunc("projecttitle", patchCoverBrowser)

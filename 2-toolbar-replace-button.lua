@@ -67,4 +67,4 @@ local function patchCoverBrowser(plugin)
         orig_TitleBar_init(self)
     end
 end
-userpatch.registerPatchPluginFunc("coverbrowser", patchCoverBrowser)
+userpatch.registerPatchPluginFunc("projecttitle", patchCoverBrowser)

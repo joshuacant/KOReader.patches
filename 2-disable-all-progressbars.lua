@@ -22,4 +22,4 @@ local function patchCoverBrowser(plugin)
         self.entry.is_file = is_file
     end
 end
-userpatch.registerPatchPluginFunc("coverbrowser", patchCoverBrowser)
+userpatch.registerPatchPluginFunc("projecttitle", patchCoverBrowser)

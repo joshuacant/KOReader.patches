@@ -16,4 +16,4 @@ local function patchCoverBrowser(plugin)
         orig_MosaicMenuItem_paintTo(self, bb, x, y)
     end
 end
-userpatch.registerPatchPluginFunc("coverbrowser", patchCoverBrowser)
+userpatch.registerPatchPluginFunc("projecttitle", patchCoverBrowser)
