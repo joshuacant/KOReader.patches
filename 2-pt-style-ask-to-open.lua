@@ -21,8 +21,9 @@ local logger = require("logger")
 local _ = require("gettext")
 local userpatch = require("userpatch")
 
-local icon_file = "book.opened"
--- local icon_file = "blank"
+local icon_file
+icon_file = "blank" -- (grab /resources/blank.svg from this repo, place in /koreader/icons/, delete the line below)
+icon_file = "book.opened"
 
 local function patchCoverBrowser(plugin)
     local BookInfoManager = require("bookinfomanager")
